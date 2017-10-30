@@ -1,3 +1,14 @@
+"""
+Copyright (c) 2017, Jairus Martin.
+
+Distributed under the terms of the MIT License.
+
+The full license is in the file COPYING.txt, distributed with this software.
+
+Created on Oct 30, 2017
+
+@author
+"""
 import sh
 from os.path import join, abspath, exists
 from pythonforandroid.recipe import PythonRecipe, current_directory

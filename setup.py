@@ -1,7 +1,14 @@
-#: ====================================================================
-#: Created with 'enaml-native init-package'
-#: Modify as needed
-#: ====================================================================
+"""
+Copyright (c) 2017, Jairus Martin.
+
+Distributed under the terms of the MIT License.
+
+The full license is in the file COPYING.txt, distributed with this software.
+
+Created on Oct 30, 2017
+
+@author
+"""
 import os
 import fnmatch
 from setuptools import setup
@@ -40,11 +47,12 @@ setup(
     url="",
     description="enaml-native-maps package for enaml-native-cli",
     long_description=open("README.md").read(),
+    py_modules=['enamlnative_maps'],
     data_files=find_data_files("enaml-native-maps", 'android', 'ios', 'src'),
     install_requires=['enaml-native-cli'],
     entry_points={
         'p4a_recipe': [
-            'enaml_native_maps = p4a_maps:get_recipe'
+            'enaml_native_maps = enamlnative_maps:get_recipe'
         ]
     },
 )
