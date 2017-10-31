@@ -11,17 +11,17 @@ Created on Oct 10, 2017
 '''
 from atom.api import Typed, Instance, Dict, Bool, set_default
 
-from enamlnative.widgets.map_view import (
+from googlemaps.widgets.map_view import (
     ProxyMapView, ProxyMapMarker, ProxyMapCircle, ProxyMapPolyline, ProxyMapPolygon
 )
 from enamlnative.core import bridge
 
-from .android_toolkit_object import AndroidToolkitObject
-from .android_frame_layout import AndroidFrameLayout, FrameLayout
-from .android_fragment import FragmentTransaction, FragmentManager
-from .android_utils import ArrayList
-from .bridge import JavaBridgeObject, JavaMethod, JavaStaticMethod, JavaCallback, JavaProxy
-from .api import LocationManager
+from enamlnative.android.android_toolkit_object import AndroidToolkitObject
+from enamlnative.android.android_frame_layout import AndroidFrameLayout, FrameLayout
+from enamlnative.android.android_fragment import FragmentTransaction, FragmentManager
+from enamlnative.android.android_utils import ArrayList
+from enamlnative.android.bridge import JavaBridgeObject, JavaMethod, JavaStaticMethod, JavaCallback, JavaProxy
+from enamlnative.android.api import LocationManager
 
 
 class ConnectionResult:

@@ -17,7 +17,7 @@ from atom.api import (
 from enaml.core.declarative import d_
 
 from enaml.widgets.toolkit_object import ToolkitObject, ProxyToolkitObject
-from .frame_layout import FrameLayout, ProxyFrameLayout
+from enamlnative.widgets.frame_layout import FrameLayout, ProxyFrameLayout
 
 
 class LatLng(Atom):
