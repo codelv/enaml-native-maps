@@ -21,10 +21,10 @@ setup(
     url="",
     entry_points={
         'enaml_native_widgets': [
-            'install = googlemaps.widgets.api:install'
+            'googlemaps = googlemaps.widgets.api:install'
         ],
         'enaml_native_android_factories': [
-            'install = googlemaps.android.factories:install'
+            'googlemaps = googlemaps.android.factories:install'
         ],
     },
     description="enaml-native-maps package for enaml-native",
