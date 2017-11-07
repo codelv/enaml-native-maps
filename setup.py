@@ -40,19 +40,19 @@ def find_data_files(dest, *folders):
 
 setup(
     name="enaml-native-maps",
-    version="1.0",
-    author="Jairus Martin",
+    version="1.1",
+    author="CodeLV",
     author_email="frmdstryr@gmail.com",
     license='MIT',
-    url="",
+    url="https://github.com/codelv/enaml-native-maps",
     description="enaml-native-maps package for enaml-native-cli",
     long_description=open("README.md").read(),
-    py_modules=['enamlnative_maps'],
+    py_modules=['enaml_native_maps'],
     data_files=find_data_files("enaml-native-maps", 'android', 'ios', 'src'),
     install_requires=['enaml-native-cli'],
     entry_points={
         'p4a_recipe': [
-            'enaml_native_maps = enamlnative_maps:get_recipe'
+            'enaml_native_maps = enaml_native_maps:get_recipe'
         ]
     },
 )

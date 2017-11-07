@@ -38,8 +38,7 @@ def map_view_factory():
 
 def install():
     from enamlnative.android import factories
-    
-    factories.ANDROID_FACTOIRES.update({
+    factories.ANDROID_FACTORIES.update({
         'MapMarker': map_marker_factory,
         'MapCircle': map_circle_factory,
         'MapPolyline': map_polyline_factory,
