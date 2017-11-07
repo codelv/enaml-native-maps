@@ -49,7 +49,7 @@ setup(
     long_description=open("README.md").read(),
     py_modules=['enaml_native_maps'],
     data_files=find_data_files("enaml-native-maps", 'android', 'ios', 'src'),
-    install_requires=['enaml-native-cli'],
+    install_requires=['enaml-native>=2.11.7'],
     entry_points={
         'p4a_recipe': [
             'enaml_native_maps = enaml_native_maps:get_recipe'

@@ -1,0 +1,4 @@
+enaml-native-icons==1.0
+enaml-native-maps==1.0
+  - enaml-native [required: Any, installed: 2.11.7]
+wheel==0.30.0
