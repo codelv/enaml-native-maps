@@ -1,7 +1,7 @@
 # enaml-native-maps
 GoogleMaps for enaml-native
 
-[![See the demo on youtube](https://img.youtube.com/vi/lYF8XioDd78/0.jpg)](https://youtu.be/lYF8XioDd78)
+[![See the demo on youtube](https://img.youtube.com/vi/qH1EByO8pwM/0.jpg)](https://youtu.be/qH1EByO8pwM)
 
 ### Features
 
