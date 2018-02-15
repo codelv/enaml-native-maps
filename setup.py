@@ -44,7 +44,7 @@ def find_data_files(dest, *folders):
 
 setup(
     name="enaml-native-maps",
-    version="1.1",
+    version="1.2",
     author="CodeLV",
     author_email="frmdstryr@gmail.com",
     license='MIT',
@@ -53,7 +53,7 @@ setup(
     long_description=open("README.md").read(),
     py_modules=['enaml_native_maps'],
     data_files=find_data_files("enaml-native-maps", 'android', 'ios', 'src'),
-    install_requires=['enaml-native>=2.11.7'],
+    install_requires=['enaml-native>=3.0.0'],
     entry_points={
         'p4a_recipe': [
             'enaml_native_maps = enaml_native_maps:get_recipe'

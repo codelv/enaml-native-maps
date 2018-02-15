@@ -256,8 +256,8 @@ class MapView(FrameLayout):
 
     """
     #: Fill parent by default
-    layout_height = set_default("match_parent")
-    layout_width = set_default("match_parent")
+    height = set_default("match_parent")
+    width = set_default("match_parent")
 
     #: Specifies whether ambient-mode styling should be enabled.
     #:  The default value is false. When enabled, ambient-styled maps can be displayed

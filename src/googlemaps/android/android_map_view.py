@@ -1,5 +1,5 @@
-'''
-Copyright (c) 2017, Jairus Martin.
+"""
+Copyright (c) 2017-2018, Jairus Martin.
 
 Distributed under the terms of the MIT License.
 
@@ -8,7 +8,7 @@ The full license is in the file COPYING.txt, distributed with this software.
 Created on Oct 10, 2017
 
 @author: jrm
-'''
+"""
 from atom.api import Typed, Instance, Dict, Bool, set_default
 
 from googlemaps.widgets.map_view import (
@@ -55,7 +55,8 @@ class LatLngList(ArrayList):
         coordinates = [LatLng(*p) for p in points]
         self.clear()
 
-        #: Must manually encode these the bridge currently doesnt try as it's slower
+        # Must manually encode these the bridge currently
+        # doesnt try as it's slower
         self.addAll([bridge.encode(c) for c in coordinates])
 
     def handle_change(self, change):
@@ -73,7 +74,8 @@ class LatLngList(ArrayList):
         elif op == 'pop':
             self.remove(change['index'])
         else:
-            raise NotImplementedError("Unsupported change operation {}".format(op))
+            raise NotImplementedError(
+                "Unsupported change operation {}".format(op))
 
 
 class GoogleMap(JavaBridgeObject):
@@ -82,15 +84,18 @@ class GoogleMap(JavaBridgeObject):
                        returns='com.google.android.gms.maps.model.Circle')
     addMarker = JavaMethod('com.google.android.gms.maps.model.MarkerOptions',
                            returns='com.google.android.gms.maps.model.Marker')
-    addPolyline = JavaMethod('com.google.android.gms.maps.model.PolylineOptions',
-                           returns='com.google.android.gms.maps.model.Polyline')
-    addPolygon = JavaMethod('com.google.android.gms.maps.model.PolygonOptions',
-                             returns='com.google.android.gms.maps.model.Polygon')
+    addPolyline = JavaMethod(
+        'com.google.android.gms.maps.model.PolylineOptions',
+        returns='com.google.android.gms.maps.model.Polyline')
+    addPolygon = JavaMethod(
+        'com.google.android.gms.maps.model.PolygonOptions',
+        returns='com.google.android.gms.maps.model.Polygon')
     onMapReady = JavaCallback('com.google.android.gms.maps.GoogleMap')
 
     animateCamera = JavaMethod('com.google.android.gms.maps.CameraUpdate')
 
-    setLatLngBoundsForCameraTarget = JavaMethod('com.google.android.gms.maps.model.LatLngBounds')
+    setLatLngBoundsForCameraTarget = JavaMethod(
+        'com.google.android.gms.maps.model.LatLngBounds')
     setMapType = JavaMethod('int')
     setMaxZoomPreference = JavaMethod('float')
     setMinZoomPreference = JavaMethod('float')
@@ -101,7 +106,8 @@ class GoogleMap(JavaBridgeObject):
 
     setOnCameraChangeListener = JavaMethod(
         'com.google.android.gms.maps.GoogleMap$OnCameraChangeListener')
-    onCameraChange = JavaCallback('com.google.android.gms.maps.model.CameraPosition')
+    onCameraChange = JavaCallback(
+        'com.google.android.gms.maps.model.CameraPosition')
     setOnCameraMoveStartedListener = JavaMethod(
         'com.google.android.gms.maps.GoogleMap$OnCameraMoveStartedListener')
     onCameraMoveStarted = JavaCallback('int')
@@ -118,38 +124,47 @@ class GoogleMap(JavaBridgeObject):
     CAMERA_REASON_API_ANIMATION = 2
     CAMERA_REASON_DEVELOPER_ANIMATION = 3
 
-
     setOnMarkerClickListener = JavaMethod(
         'com.google.android.gms.maps.GoogleMap$OnMarkerClickListener')
-    onMarkerClick = JavaCallback('com.google.android.gms.maps.model.Marker', returns='boolean')
+    onMarkerClick = JavaCallback('com.google.android.gms.maps.model.Marker',
+                                 returns='boolean')
 
     setOnMarkerDragListener = JavaMethod(
         'com.google.android.gms.maps.GoogleMap$OnMarkerDragListener')
     onMarkerDrag = JavaCallback('com.google.android.gms.maps.model.Marker')
     onMarkerDragEnd = JavaCallback('com.google.android.gms.maps.model.Marker')
-    onMarkerDragStart = JavaCallback('com.google.android.gms.maps.model.Marker')
+    onMarkerDragStart = JavaCallback(
+        'com.google.android.gms.maps.model.Marker')
 
     #: Info windows
     setOnInfoWindowClickListener = JavaMethod(
         'com.google.android.gms.maps.GoogleMap$OnInfoWindowClickListener')
-    onInfoWindowClick = JavaCallback('com.google.android.gms.maps.model.Marker')
+    onInfoWindowClick = JavaCallback(
+        'com.google.android.gms.maps.model.Marker')
     setOnInfoWindowCloseListener = JavaMethod(
         'com.google.android.gms.maps.GoogleMap$OnInfoWindowCloseListener')
-    onInfoWindowClose = JavaCallback('com.google.android.gms.maps.model.Marker')
+    onInfoWindowClose = JavaCallback(
+        'com.google.android.gms.maps.model.Marker')
     setOnInfoWindowLongClickListener = JavaMethod(
         'com.google.android.gms.maps.GoogleMap$OnInfoWindowLongClickListener')
-    onInfoWindowLongClick = JavaCallback('com.google.android.gms.maps.model.Marker')
-    setInfoWindowAdapter = JavaMethod('com.google.android.gms.maps.GoogleMap$InfoWindowAdapter')
+    onInfoWindowLongClick = JavaCallback(
+        'com.google.android.gms.maps.model.Marker')
+    setInfoWindowAdapter = JavaMethod(
+        'com.google.android.gms.maps.GoogleMap$InfoWindowAdapter')
 
     class InfoWindowAdapter(JavaProxy):
-        __nativeclass__ = set_default('com.google.android.gms.maps.GoogleMap$InfoWindowAdapter')
-        getInfoContents = JavaCallback('com.google.android.gms.maps.model.Marker',
-                                       returns='android.view.View')
-        getInfoWindow = JavaCallback('com.google.android.gms.maps.model.Marker',
-                                       returns='android.view.View')
+        __nativeclass__ = set_default(
+            'com.google.android.gms.maps.GoogleMap$InfoWindowAdapter')
+        getInfoContents = JavaCallback(
+            'com.google.android.gms.maps.model.Marker',
+            returns='android.view.View')
+        getInfoWindow = JavaCallback(
+            'com.google.android.gms.maps.model.Marker',
+            returns='android.view.View')
 
     #: Map clicks
-    setOnMapClickListener = JavaMethod('com.google.android.gms.maps.GoogleMap$OnMapClickListener')
+    setOnMapClickListener = JavaMethod(
+        'com.google.android.gms.maps.GoogleMap$OnMapClickListener')
     onMapClick = JavaCallback('com.google.android.gms.maps.model.LatLng')
     setOnMapLongClickListener = JavaMethod(
         'com.google.android.gms.maps.GoogleMap$OnMapLongClickListener')
@@ -157,7 +172,8 @@ class GoogleMap(JavaBridgeObject):
 
     setOnPolylineClickListener = JavaMethod(
         'com.google.android.gms.maps.GoogleMap$OnPolylineClickListener')
-    onPolylineClick = JavaCallback('com.google.android.gms.maps.model.Polyline')
+    onPolylineClick = JavaCallback(
+        'com.google.android.gms.maps.model.Polyline')
     setOnPolygonClickListener = JavaMethod(
         'com.google.android.gms.maps.GoogleMap$OnPolygonClickListener')
     onPolygonClick = JavaCallback('com.google.android.gms.maps.model.Polygon')
@@ -182,7 +198,8 @@ class GoogleMap(JavaBridgeObject):
 
 
 class MapsInitializer(JavaBridgeObject):
-    __nativeclass__ = set_default('com.google.android.gms.maps.MapsInitializer')
+    __nativeclass__ = set_default(
+        'com.google.android.gms.maps.MapsInitializer')
     initialize = JavaStaticMethod('android.content.Context', returns='int')
 
 
@@ -191,8 +208,10 @@ class MapFragment(JavaBridgeObject):
         Note: You must add "compile 'com.android.support:cardview-v7:21.0.+'"
               to build.gradle for this to work!
     """
-    __nativeclass__ = set_default('com.google.android.gms.maps.SupportMapFragment')
-    newInstance = JavaStaticMethod('com.google.android.gms.maps.GoogleMapOptions',
+    __nativeclass__ = set_default(
+        'com.google.android.gms.maps.SupportMapFragment')
+    newInstance = JavaStaticMethod(
+        'com.google.android.gms.maps.GoogleMapOptions',
         returns='com.google.android.gms.maps.SupportMapFragment')
     getMapAsync = JavaMethod('com.google.android.gms.maps.OnMapReadyCallback')
     getView = JavaMethod(returns='android.view.View')
@@ -203,11 +222,13 @@ class MapView(FrameLayout):
 
 
 class GoogleMapOptions(JavaBridgeObject):
-    __nativeclass__ = set_default('com.google.android.gms.maps.GoogleMapOptions')
+    __nativeclass__ = set_default(
+        'com.google.android.gms.maps.GoogleMapOptions')
     ambientEnabled = JavaMethod('boolean')
     camera = JavaMethod('com.google.android.gms.maps.model.CameraPosition')
     compassEnabled = JavaMethod('boolean')
-    latLngBoundsForCameraTarget = JavaMethod('com.google.android.gms.maps.model.LatLngBounds')
+    latLngBoundsForCameraTarget = JavaMethod(
+        'com.google.android.gms.maps.model.LatLngBounds')
     liteMode = JavaMethod('boolean')
     mapToolbarEnabled = JavaMethod('boolean')
     mapType = JavaMethod('int')
@@ -221,7 +242,8 @@ class GoogleMapOptions(JavaBridgeObject):
 
 
 class CameraPosition(JavaBridgeObject):
-    __nativeclass__ = set_default('com.google.android.gms.maps.model.CameraPosition')
+    __nativeclass__ = set_default(
+        'com.google.android.gms.maps.model.CameraPosition')
     __signature__ = set_default(('com.google.android.gms.maps.model.LatLng',
                                  'float', 'float', 'float'))
 
@@ -230,9 +252,11 @@ class CameraUpdate(JavaBridgeObject):
 
 
 class CameraUpdateFactory(JavaBridgeObject):
-    __nativeclass__ = set_default('com.google.android.gms.maps.CameraUpdateFactory')
-    newCameraPosition = JavaStaticMethod('com.google.android.gms.maps.model.CameraPosition',
-                 returns='com.google.android.gms.maps.CameraUpdate')
+    __nativeclass__ = set_default(
+        'com.google.android.gms.maps.CameraUpdateFactory')
+    newCameraPosition = JavaStaticMethod(
+        'com.google.android.gms.maps.model.CameraPosition',
+        returns='com.google.android.gms.maps.CameraUpdate')
 
 
 class LatLng(JavaBridgeObject):
@@ -253,7 +277,8 @@ class MapItemOptionsBase(JavaBridgeObject):
 
 
 class MarkerOptions(MapItemOptionsBase):
-    __nativeclass__ = set_default('com.google.android.gms.maps.model.MarkerOptions')
+    __nativeclass__ = set_default(
+        'com.google.android.gms.maps.model.MarkerOptions')
     alpha = JavaMethod('float')
     anchor = JavaMethod('float', 'float')
     draggable = JavaMethod('boolean')
@@ -281,7 +306,8 @@ class Marker(MapItemBase):
 
 
 class CircleOptions(MapItemOptionsBase):
-    __nativeclass__ = set_default('com.google.android.gms.maps.model.CircleOptions')
+    __nativeclass__ = set_default(
+        'com.google.android.gms.maps.model.CircleOptions')
     radius = JavaMethod('double')
     clickable = JavaMethod('boolean')
     center = JavaMethod('com.google.android.gms.maps.model.LatLng')
@@ -301,7 +327,8 @@ class Circle(MapItemBase):
 
 
 class PolylineOptions(MapItemOptionsBase):
-    __nativeclass__ = set_default('com.google.android.gms.maps.model.PolylineOptions')
+    __nativeclass__ = set_default(
+        'com.google.android.gms.maps.model.PolylineOptions')
     #add = JavaMethod('com.google.android.gms.maps.model.LatLng')
     add = JavaMethod('[Lcom.google.android.gms.maps.model.LatLng;')
     addAll = JavaMethod('java.lang.Iterable')
@@ -319,7 +346,8 @@ class ButtCap(JavaBridgeObject):
 
 
 class SquareCap(JavaBridgeObject):
-    __nativeclass__ = set_default('com.google.android.gms.maps.model.SquareCap')
+    __nativeclass__ = set_default(
+        'com.google.android.gms.maps.model.SquareCap')
 
 
 class RoundCap(JavaBridgeObject):
@@ -354,7 +382,8 @@ class Polyline(MapItemBase):
 
 
 class PolygonOptions(MapItemOptionsBase):
-    __nativeclass__ = set_default('com.google.android.gms.maps.model.PolygonOptions')
+    __nativeclass__ = set_default(
+        'com.google.android.gms.maps.model.PolygonOptions')
     clickable = JavaMethod('clickable')
     fillColor = JavaMethod('android.graphics.Color')
     #add = JavaMethod('com.google.android.gms.maps.model.LatLng')
@@ -405,9 +434,9 @@ class AndroidMapView(AndroidFrameLayout, ProxyMapView):
     #: Info window adapter
     adapter = Typed(GoogleMap.InfoWindowAdapter)
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # Initialization API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def create_widget(self):
         """ Create the underlying widget.
 
@@ -415,20 +444,23 @@ class AndroidMapView(AndroidFrameLayout, ProxyMapView):
         self.init_options()
 
         #: Retrieve the actual map
-        MapFragment.newInstance(self.options).then(self.on_map_fragment_created)
+        MapFragment.newInstance(self.options).then(
+            self.on_map_fragment_created)
 
-        #: Holder for the fragment
+        # Holder for the fragment
         self.widget = FrameLayout(self.get_context())
 
-        #: I wrote this a few days ago and already forget how this hack works... lol
-        #: We can't simply get a map reference using getMapAsync in the return value like we
-        #: normally do with a normal call function return value.
-        #: The bridge design was modified to store an object that cannot be decoded normally (via a
-        #: standard Bridge.Packer) by saving the new object in the cache returning the id of the
-        #: handler or proxy that invoked it. This way we can manually create a new id and
-        #: pass that "future reference-able" object as our listener. At which point the bridge will
-        #: create a reference entry in the cache for us with the of the object we gave it. Once in
-        #: the cache we can use it like any bridge object we created.
+        # I wrote this a few days ago and already forget how this hack works...
+        # lol We can't simply get a map reference using getMapAsync in the
+        # return value like we normally do with a normal call function return
+        # value. The bridge design was modified to store an object that cannot
+        # be decoded normally (via a standard Bridge.Packer) by saving the new
+        # object in the cache returning the id of the handler or proxy that
+        # invoked it. This way we can manually create a new id and pass that
+        # "future reference-able" object as our listener. At which point the
+        # bridge will create a reference entry in the cache for us with the of
+        # the object we gave it. Once in the cache we can use it like any
+        # bridge object we created.
         self.map = GoogleMap(__id__=bridge.generate_id())
 
     def init_options(self):
@@ -440,7 +472,8 @@ class AndroidMapView(AndroidFrameLayout, ProxyMapView):
         self.set_map_type(d.map_type)
         if d.ambient_mode:
             self.set_ambient_mode(d.ambient_mode)
-        if d.camera_position or d.camera_zoom or d.camera_tilt or d.camera_bearing:
+        if (d.camera_position or d.camera_zoom or
+                d.camera_tilt or d.camera_bearing):
             self.update_camera()
         if d.map_bounds:
             self.set_map_bounds(d.map_bounds)
@@ -524,23 +557,24 @@ class AndroidMapView(AndroidFrameLayout, ProxyMapView):
         mapview.onCircleClick.connect(self.on_circle_clicked)
         mapview.setOnCircleClickListener(mid)
 
-
     def init_info_window_adapter(self):
-        """ Initialize the info window adapter. Should only be done if one of the
-            markers defines a custom view.
+        """ Initialize the info window adapter. Should only be done if one of 
+        the markers defines a custom view.
         """
-        if self.adapter:
+        adapter = self.adapter
+        if adapter:
             return  #: Already initialized
-        self.adapter = GoogleMap.InfoWindowAdapter()
-        self.adapter.getInfoContents.connect(self.on_info_window_contents_requested)
-        self.adapter.getInfoWindow.connect(self.on_info_window_requested)
-        self.map.setInfoWindowAdapter(self.adapter)
+        adapter = GoogleMap.InfoWindowAdapter()
+        adapter.getInfoContents.connect(self.on_info_window_contents_requested)
+        adapter.getInfoWindow.connect(self.on_info_window_requested)
+        self.map.setInfoWindowAdapter(adapter)
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # Google Maps API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def on_map_fragment_created(self, obj_id):
-        """ Create the fragment and pull the map reference when it's loaded. """
+        """ Create the fragment and pull the map reference when it's loaded. 
+        """
         self.fragment = MapFragment(__id__=obj_id)
 
         #: Setup callback so we know when the map is ready
@@ -608,9 +642,9 @@ class AndroidMapView(AndroidFrameLayout, ProxyMapView):
             'position': tuple(pos)
         })
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # Camera API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def on_camera_move_started(self, reason):
         d = self.declaration
         if reason == GoogleMap.CAMERA_REASON_GESTURE:
@@ -636,9 +670,9 @@ class AndroidMapView(AndroidFrameLayout, ProxyMapView):
         finally:
             self._update_blocked = False
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # Marker API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def on_marker_clicked(self, marker):
         mid, pos = marker
         m = self.markers.get(mid)
@@ -664,9 +698,9 @@ class AndroidMapView(AndroidFrameLayout, ProxyMapView):
         if m:
             m.on_drag_end(pos)
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # Info window API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def on_info_window_requested(self, marker):
         mid, pos = marker
         m = self.markers.get(mid)
@@ -698,25 +732,25 @@ class AndroidMapView(AndroidFrameLayout, ProxyMapView):
         if m and m.declaration:
             m.on_info_window_closed()
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # Polygon and PolyLine API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def on_poly_clicked(self, poly):
         m = self.markers.get(poly)
         if m:
             m.on_click()
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # Circle API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def on_circle_clicked(self, circle):
         m = self.markers.get(circle)
         if m:
             m.on_click()
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # ProxyMapView API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def set_map_bounds(self, bounds):
         raise NotImplementedError
 
@@ -773,11 +807,12 @@ class AndroidMapView(AndroidFrameLayout, ProxyMapView):
             return
         d = self.declaration
         if self.map:
-            #: Bit of a hack but it "should" work hahah
-            #: The future created to handle returned values creates an id for itself.
-            #: The bridge will save objects created (if they cannot be packed by a specific Packer)
-            #: using that ID, hence we can reference it right away without actually waiting
-            #: until we get a return value back across the bridge.
+            # Bit of a hack but it "should" work hahah
+            # The future created to handle returned values creates an id for
+            # itself. The bridge will save objects created (if they cannot be
+            # packed by a specific Packer) using that ID, hence we can
+            # reference it right away without actually waiting
+            # until we get a return value back across the bridge.
             self.map.animateCamera(CameraUpdateFactory.newCameraPosition(
                     CameraPosition(
                         LatLng(*d.camera_position),
@@ -903,7 +938,8 @@ class AndroidMapMarker(AndroidMapItemBase, ProxyMapMarker):
 
     def create_widget(self):
         """ Create the MarkerOptions for this map marker
-            this later gets converted into a "Marker" instance when addMarker is called
+        this later gets converted into a "Marker" instance when addMarker 
+        is called
         """
         self.options = MarkerOptions()
 
@@ -933,25 +969,27 @@ class AndroidMapMarker(AndroidMapItemBase, ProxyMapMarker):
     def child_added(self, child):
         """ If a child is added we have to make sure the map adapter exists """
         if child.widget:
-            #: TODO: Should we keep count and remove the adapter if not all markers request it?
+            # TODO: Should we keep count and remove the adapter if not all
+            # markers request it?
             self.parent().init_info_window_adapter()
         super(AndroidMapMarker, self).child_added(child)
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # Marker API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def on_marker(self, marker):
         """ Convert our options into the actual marker object"""
         mid, pos = marker
         self.marker = Marker(__id__=mid)
         mapview = self.parent()
-        #: Save ref
+        # Save ref
         mapview.markers[mid] = self
 
-        #: Required so the packer can pass the id
+        # Required so the packer can pass the id
         self.marker.setTag(mid)
 
-        #: If we have a child widget we must configure the map to use the custom adapter
+        # If we have a child widget we must configure the map to use the
+        # custom adapter
         for w in self.child_widgets():
             mapview.init_info_window_adapter()
             break
@@ -969,7 +1007,7 @@ class AndroidMapMarker(AndroidMapItemBase, ProxyMapMarker):
         d.clicked(result)
         r = bool(result['handled'])
         if not r and (d.title or d.snippit):
-            #: Info window is shown by default
+            # Info window is shown by default
             with self.marker.showInfoWindow.suppressed():
                 d.show_info = True
         return r
@@ -1001,7 +1039,7 @@ class AndroidMapMarker(AndroidMapItemBase, ProxyMapMarker):
             d.show_info = False
 
     def on_info_window_requested(self):
-        #: Use default window, subclasses can override if necessary
+        # Use default window, subclasses can override if necessary
         d = self.declaration
         if d.custom_info_window_mode == 'custom':
             for w in self.child_widgets():
@@ -1009,14 +1047,14 @@ class AndroidMapMarker(AndroidMapItemBase, ProxyMapMarker):
         return None
 
     def on_info_window_contents_requested(self):
-        #: Return the first child widget as the view for the content
+        # Return the first child widget as the view for the content
         for w in self.child_widgets():
             return w
         return None
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # ProxyMapMarker API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def set_alpha(self, alpha):
         if self.marker:
             self.marker.setAlpha(alpha)
@@ -1083,7 +1121,8 @@ class AndroidMapCircle(AndroidMapItemBase, ProxyMapCircle):
 
     def create_widget(self):
         """ Create the CircleOptions for this map item
-            this later gets converted into a "Circle" instance when addCircle is called
+        this later gets converted into a "Circle" instance when addCircle 
+        is called
         """
         self.options = CircleOptions()
 
@@ -1106,9 +1145,9 @@ class AndroidMapCircle(AndroidMapItemBase, ProxyMapCircle):
         if d.stroke_width != 10:
             self.set_stroke_width(d.stroke_width)
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # Marker API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def on_marker(self, mid):
         """ Convert our options into the actual circle object"""
         self.marker = Circle(__id__=mid)
@@ -1128,9 +1167,9 @@ class AndroidMapCircle(AndroidMapItemBase, ProxyMapCircle):
         d = self.declaration
         d.clicked()
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # ProxyMapCircle API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def set_clickable(self, clickable):
         if self.marker:
             self.marker.setClickable(clickable)
@@ -1178,7 +1217,8 @@ class AndroidMapPolyline(AndroidMapItemBase, ProxyMapPolyline):
 
     def create_widget(self):
         """ Create the MarkerOptions for this map marker
-            this later gets converted into a "Marker" instance when addMarker is called
+        this later gets converted into a "Marker" instance when addMarker 
+        is called
         """
         self.options = PolylineOptions()
         #: List to hold our points
@@ -1206,9 +1246,9 @@ class AndroidMapPolyline(AndroidMapItemBase, ProxyMapPolyline):
         if d.width != 10:
             self.set_width(d.width)
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # Polyline API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def on_marker(self, mid):
         """ Convert our options into the actual marker object"""
         #mid, pos = marker
@@ -1227,9 +1267,9 @@ class AndroidMapPolyline(AndroidMapItemBase, ProxyMapPolyline):
         d = self.declaration
         d.clicked()
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # ProxyMapPolyline API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def set_points(self, points):
         #: Have to hold on until after added to the ArrayList
         #: or the GC cleans them up and the bridge destroys them
@@ -1240,8 +1280,8 @@ class AndroidMapPolyline(AndroidMapItemBase, ProxyMapPolyline):
             self.options.addAll(self.points)
 
     def update_points(self, change):
-        """ Update the points in a smart way without passing them over the bridge with every
-            change.
+        """ Update the points in a smart way without passing them over the 
+        bridge with every change.
         """
         #: Delegate to the special LatLngList
         self.points.handle_change(change)
@@ -1304,7 +1344,8 @@ class AndroidMapPolygon(AndroidMapItemBase, ProxyMapPolygon):
 
     def create_widget(self):
         """ Create the MarkerOptions for this map marker
-            this later gets converted into a "Marker" instance when addMarker is called
+        this later gets converted into a "Marker" instance when addMarker 
+        is called
         """
         self.options = PolygonOptions()
         self.points = LatLngList()
@@ -1329,9 +1370,9 @@ class AndroidMapPolygon(AndroidMapItemBase, ProxyMapPolygon):
         if d.stroke_width != 10:
             self.set_stroke_width(d.stroke_width)
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # Marker API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def on_marker(self, mid):
         """ Convert our options into the actual marker object"""
         #mid, pos = marker
@@ -1350,9 +1391,9 @@ class AndroidMapPolygon(AndroidMapItemBase, ProxyMapPolygon):
         d = self.declaration
         d.clicked()
 
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # ProxyMapMarker API
-    # --------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def set_points(self, points):
         #: Have to hold on until after added to the ArrayList
         #: or the GC cleans them up and the bridge destroys them
