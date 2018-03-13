@@ -1,0 +1,15 @@
+package:
+  name: enaml-native-maps
+  version: 1.2.0
+
+requirements:
+  run:
+    - enaml-native
+
+build:
+  number: 1
+  noarch: generic
+
+about:
+  home: http://github.com/codelv/enaml-native-maps
+  license: MIT
