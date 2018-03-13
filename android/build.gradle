@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 25
@@ -27,9 +26,9 @@ android {
 }
 
 dependencies {
-    compile project(':enaml-native')
-    compile 'com.google.android.gms:play-services-base:11.0.+'
-    compile 'com.google.android.gms:play-services-maps:11.0.+'
+    api project(':enaml-native')
+    api 'com.google.android.gms:play-services-base:11.0.+'
+    api 'com.google.android.gms:play-services-maps:11.0.+'
 
 }
 
